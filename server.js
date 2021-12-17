@@ -7,11 +7,18 @@ app.use(express.json());
 
 const { Client } = require("pg");
 
+// const client = new Client ({
+//     "user": "postgres",
+//     "password": "password",
+//     "host": "localhost",
+//     "database": "game"
+// })
+
 const client = new Client ({
-    "user": "postgres",
-    "password": "password",
-    "host": "localhost",
-    "database": "game"
+    "user": "bsmzwnkjsacwhz",
+    "password": "22e8702e00477bf50002fbead3902c49bdcb73862c1a5697938fb931bafccaaa",
+    "host": "ec2-34-247-118-233.eu-west-1.compute.amazonaws.com",
+    "database": "dc58nbgq3458fk"
 })
 
 client.connect()
@@ -28,4 +35,4 @@ app.post("/api/scores", (req, res) => {
     .then(result => res.send(result.rows))
     })
 
-app.listen(5000, () => console.log(`Listening on port`));
+app.listen(5432, () => console.log(`Listening on port`));
