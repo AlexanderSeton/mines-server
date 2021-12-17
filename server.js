@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-
 const cors = require("cors");
 app.use(cors());
 app.use(express.json());
@@ -31,9 +30,7 @@ const { Client } = require("pg");
 
 const client = new Client({
     connectionString: "postgres://bsmzwnkjsacwhz:22e8702e00477bf50002fbead3902c49bdcb73862c1a5697938fb931bafccaaa@ec2-34-247-118-233.eu-west-1.compute.amazonaws.com:5432/dc58nbgq3458fk",
-    ssl: {
-      rejectUnauthorized: false
-    }
+    ssl: true,
 });
 
 client.connect()
@@ -60,4 +57,6 @@ app.post("/api/scores", (req, res) => {
     .then(result => res.send(result.rows))
     })
 
-app.listen(5432, () => console.log("Listening on port"));
+app.listen(5432, () => {
+    console.log("Listening on port")
+});
