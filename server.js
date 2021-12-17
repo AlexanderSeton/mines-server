@@ -14,12 +14,19 @@ const { Client } = require("pg");
 //     "database": "game"
 // })
 
-const client = new Client ({
-    "user": "bsmzwnkjsacwhz",
-    "password": "22e8702e00477bf50002fbead3902c49bdcb73862c1a5697938fb931bafccaaa",
-    "host": "ec2-34-247-118-233.eu-west-1.compute.amazonaws.com",
-    "database": "dc58nbgq3458fk"
-})
+// const client = new Client ({
+//     "user": "bsmzwnkjsacwhz",
+//     "password": "22e8702e00477bf50002fbead3902c49bdcb73862c1a5697938fb931bafccaaa",
+//     "host": "ec2-34-247-118-233.eu-west-1.compute.amazonaws.com",
+//     "database": "dc58nbgq3458fk"
+// })
+
+const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+});
 
 client.connect()
 
