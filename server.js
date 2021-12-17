@@ -1,6 +1,8 @@
 const express = require("express");
-const app = express();
 const cors = require("cors");
+
+const app = express();
+
 app.use(cors());
 app.use(express.json());
 
@@ -41,13 +43,7 @@ client.connect()
 // })
 
 app.get("/api/scores", (req, res) => {
-    client.query('SELECT * FROM high_scores;', (err, res) => {
-        if (err) throw err;
-        for (let row of res.rows) {
-          console.log(JSON.stringify(row));
-        }
-        client.end();
-    });
+    res.send('<h1>This is a test application</h1>');
 })
 
 app.post("/api/scores", (req, res) => {
