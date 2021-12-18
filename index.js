@@ -24,11 +24,10 @@ express()
     // let p_name = req.body.player_name;
     // let p_score = req.body.score;
     try {
-      client = await pool.connect();
+      const client = await pool.connect();
       // const result = await client.query(`INSERT INTO high_scores (player_name, score) VALUES ("${req.body.player_name}", "${req.body.score}") RETURNING *;`);
       // const results = { 'results': (result) ? result.rows : null};
-      results = req;
-      res.send(results);
+      res.json(req);
       client.release();
     } catch (err) {
       console.error(err);
