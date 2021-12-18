@@ -20,11 +20,12 @@ express()
     }
   })
   .post("/api/scores", async (req, res) => {
-    let p_name = req.body.player_name;
-    let p_score = req.body.score;
+    // check if request is actually being processed !!!
+    // let p_name = req.body.player_name;
+    // let p_score = req.body.score;
     try {
       const client = await pool.connect();
-      const result = await client.query(`INSERT INTO high_scores (player_name, score) VALUES (${p_name}, ${p_score}) RETURNING *;`);
+      const result = await client.query(`INSERT INTO high_scores (player_name, score) VALUES (${req.body.player_name}, ${req.body.score}) RETURNING *;`);
       const results = { 'results': (result) ? result.rows : null};
       res.send(results);
       client.release();
