@@ -19,7 +19,7 @@ express()
       res.send("Error " + err);
     }
   })
-  .post("api/scores", async (req, res) => {
+  .post("/api/scores", async (req, res) => {
     try {
       let p_name = req.body.player_name;
       let p_score = req.body.score;
