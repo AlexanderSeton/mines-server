@@ -21,9 +21,9 @@ express()
   })
   .post("/api/scores", async (req, res) => {
     try {
-      let p_name = req.body["player_name"];
-      let p_score = req.body.score;
       const client = await pool.connect();
+      let p_name = await req.body.player_name;
+      let p_score = await req.body.score;
       const result = await client.query(`INSERT INTO high_scores (player_name, score) VALUES (${p_name}, ${p_score}) RETURNING *;`);
       const results = { 'results': (result) ? result.rows : null};
       res.send(results);
