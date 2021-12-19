@@ -8,7 +8,7 @@ express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
-  .get('/api/scores', async (req, res) => {
+  .get('/api/scores/', async (req, res) => {
     try {
       const client = await pool.connect();
       const result = await client.query('SELECT * FROM high_scores');
@@ -20,7 +20,7 @@ express()
       res.send("Error " + err);
     }
   })
-  .post("/api/scores", async (req, res) => {
+  .post("/api/scores/", async (req, res) => {
     // let p_name = req.body.player_name;
     // let p_score = req.body.score;
     try {
