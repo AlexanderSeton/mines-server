@@ -1,3 +1,4 @@
+const { json } = require('body-parser');
 const cool = require('cool-ascii-faces');
 const express = require('express');
 const path = require('path');
@@ -26,7 +27,8 @@ express()
       const client = await pool.connect();
       // const result = await client.query(`INSERT INTO high_scores (player_name, score) VALUES ('${req.body.player_name}', ${req.body.score}) RETURNING *;`);
       // const results = { 'results': (result) ? result.rows : null};
-      res.send(req.params);
+      const data = await JSON.stringify(req.params.data);
+      res.send(data);
       client.release();
     } catch (err) {
       console.error(err);
