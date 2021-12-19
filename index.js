@@ -1,6 +1,7 @@
 const { json } = require('body-parser');
 const cool = require('cool-ascii-faces');
 const express = require('express');
+const cors = require('cors')
 const path = require('path');
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 5000;
@@ -9,6 +10,7 @@ express()
   .use(express.static(path.join(__dirname, 'public')))
   .use(bodyParser.urlencoded())
   .use(bodyParser.json())
+  .use(cors())
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/api/scores/', async (req, res) => {
